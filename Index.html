@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+		<title>iTunes 11 Colors</title>
+		<style type="text/css">
+			html, body{
+				height:100%;
+				
+				font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+				
+				-webkit-transition: background 0.3s ease; 
+				-moz-transition: background 0.3s ease; 
+				-o-transition: background 0.3s ease; 
+				transition: background 0.3s ease; 
+				}
+			h1,h2{
+				-webkit-transition: color 0.3s ease; 
+				-moz-transition: color 0.3s ease; 
+				-o-transition: color 0.3s ease; 
+				transition: color 0.3s ease; 
+				}
+			.container{
+				margin:20px auto;
+				width:400px;
+				}
+				.container img{
+					max-width:180px;
+					margin:7px;
+					-webkit-transition: all 0.3s ease; 
+					-moz-transition: all 0.3s ease; 
+					-o-transition: all 0.3s ease; 
+					transition: all 0.3s ease; 
+					opacity:0.8;
+					}
+					.container img.active{
+						opacity:1;
+						-webkit-transform: scale(1.1); 
+						-moz-transform: scale(1.1); 
+						-ms-transform: scale(1.1); 
+						-o-transform: scale(1.1); 
+						transform: scale(1.1);
+						outline:4px solid rgba(255,255,255,0.2);
+						}
+		</style>
+	</head>
+	<body>
+		
+		<div class="container">
+			
+			<h1>Artist Name</h1>
+			<h2>Album Name</h2>
+			
+			<img src="artwork/take-care.png" data-artist="Drake" data-album="Take Care">
+			<img src="artwork/gkmc.png" data-artist="Kendrick Lamar" data-album="Good Kid Mad City">
+			<img src="artwork/zombie.png" data-artist="The Devil Wears Prada" data-album="Zombie">
+			<img src="artwork/thrift-shop.png" data-artist="Macklemore" data-album="Thrift Shop">
+			<img src="artwork/amen.png" data-artist="Meek Mill" data-album="Amen">
+			<img src="artwork/snat.png" data-artist="Driicky Graham" data-album="Snapbacks and Tattoos">
+		</div>
+		
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script type="text/javascript" src="Colors.js"></script>
+		<script type="text/javascript">
+			(function($){
+				$(document).ready(function(){
+					$(document).on('click', 'img', function(){
+						var _this = this,
+							artist = _this.dataset.artist,
+							album = _this.dataset.album;
+						$('.active').removeClass('active');
+						_this.className = 'active';
+						Colors.analyze(this, function(colors){
+							$('html').css({backgroundColor:colors[1]});
+							$('h1').text(artist).css({color:colors[0]});
+							$('h2').text(album).css({color:colors[2]});
+						});
+					});
+				});
+			})(jQuery);
+		</script>
+	</body>
+</html>
